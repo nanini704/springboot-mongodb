@@ -1,21 +1,21 @@
 package com.nandini.springbootmongodb.Config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 
 @Configuration
-public class SpringFoxConfig {
+@OpenAPIDefinition
+public class SpringFoxConfig {  // You might want to rename this class to OpenApiConfig
 
     @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.nandini.springbootmongodb"))
-                .paths(PathSelectors.any())
-                .build();
+    public OpenAPI api() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Spring MongoDB API")
+                        .description("API Documentation for Spring MongoDB Application")
+                        .version("1.0"));
     }
 }
